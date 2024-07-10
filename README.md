@@ -49,7 +49,7 @@
 1. **Gehen Sie ins Terminal / CMD**
     - Gehen Sie ins Terminal / CMD
     - geben sie folgenden befehl aus
-    '''
+    ```
     python3 app.py 
-    '''
+    ```
 
