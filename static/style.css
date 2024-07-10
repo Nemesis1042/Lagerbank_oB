@@ -75,11 +75,9 @@ button:hover {
 }
 @media (max-width: 768px) {
     nav ul {
-        flex-direction: column;
+        flex-direction: box;
         margin-top: 2px;
         margin-right: 1px;
-        
-
     }
     nav ul li {
         margin-right: 0;

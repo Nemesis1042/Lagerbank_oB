@@ -1,17 +1,11 @@
 # Standard-Bibliotheken
 import os   # Für Dateioperationen
-import time # Für Zeitverzögerungen
 import sqlite3  # Für Datenbankzugriff
-import threading    # Für Multithreading
 from datetime import datetime # Für Zeitstempel
 
 # Externe Bibliotheken
 import numpy as np  #
 import pandas as pd     # Für Datenverarbeitung und -analyse
-#import cv2  # Für Kamera- und Bildverarbeitungsfunktionen
-#import pyzbar # Für Barcode-Scanning
-
-#import pygame  # Für Soundeffekte
 import shutil   # Für Dateioperationen
 from crypt import methods   # Für Verschlüsselungsalgorithmen
 from typing import List, Tuple, Callable    # Für Typenangaben
