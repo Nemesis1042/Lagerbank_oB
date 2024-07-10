@@ -1,0 +1,16 @@
+# Creating the requirements.txt content
+requirements_content = """
+Flask
+numpy
+opencv-python
+pyzbar
+"""
+
+# Writing the content to requirements.txt
+requirements_path = '/mnt/data/requirements.txt'
+
+with open(requirements_path, 'w') as file:
+    file.write(requirements_content)
+
+# Confirming the requirements.txt creation
+requirements_path
