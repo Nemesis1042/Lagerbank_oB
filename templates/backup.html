@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenbank-Backup</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel=stylesheet href="/static/style.css">
+
+    <style>
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background-color: #ff004d;
+            color: white;
+        }
+
+        .highlight:hover {
+            background-color: #ff1a66;
+        }
+        a:hover {
+            color: #ff004d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Datenbank-Backup</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Startseite</a></li>
+                <li><a href="/add_buy">Kauf hinzufügen</a></li>
+                <li><a href="/watch">Übersicht</a></li>
+                <li><a href="#" onclick="history.back();">Zurück</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+                <form method="POST">
+                    <label for="backup_directory">Backup-Verzeichnis:</label>
+                    <label for="att_backupdir"> {{ backup_directory }} </label>
+                    <br>
+                    <br>
+
+                    <label for="backup_filename">Backup-Verzeichnis ändern:</label>
+                    <input type="text" id="backup_directory" name="backup_directory" value="">
+
+                    <button type="submit">Backup-Verzeichnis ändern</button>
+                    <br>
+                    <br>
+                    <label for="backup_filename">Backup-Dateiname:</label>
+                    <label for="att_backupfile"> {{ backup_filename }} </label>
+                    <br>
+                    <br>
+                    <button type="submit">Backup erstellen</button>
+
+                    
+                </form>
+        </div>
+    </main>
+</body>
+</html>
