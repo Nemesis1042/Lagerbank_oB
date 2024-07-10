@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkt hinzufügen</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+       
+        form {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="number"], button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 10px auto;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+        }
+
+        input[type="text"]:hover, input[type="number"]:hover, button:hover {
+            background-color: #f0f0f0;
+        }
+
+        button {
+            background-color: #ff004d;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #ff1a66;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Produkt hinzufügen</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Startseite</a></li>
+                <li><a href="/add_buy">Kauf hinzufügen</a></li>
+                <li><a href="/watch">Übersicht</a></li>
+                <li><a href="#" onclick="history.back();">Zurück</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>
+            
+            <form method="post">
+                <label for="product">Produktname:</label>
+                <input type="text" id="product" name="product" required><br>
+                <label for="price">Preis:</label>
+                <input type="number" id="price" name="price" required step="0.01"><br>
+                <button type="submit">Hinzufügen</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </main>
+</body>
+</html>

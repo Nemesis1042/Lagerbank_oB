@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guthaben abheben</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+        form {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select, input[type="number"], button[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 10px auto;
+        }
+
+        select:hover, input[type="number"]:hover, button[type="submit"]:hover {
+            background-color: #f0f0f0;
+        }
+
+        button[type="submit"] {
+            background-color: #ff004d;
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff1a66;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Guthaben abheben</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Startseite</a></li>
+                <li><a href="/add_buy">Kauf hinzufügen</a></li>
+                <li><a href="/watch">Übersicht</a></li>
+                <li><a href="#" onclick="history.back();">Zurück</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <div>
+        
+        
+        <form method="post">
+            <label for="user">Benutzername:</label>
+            <select id="user" name="user">
+                {% for user in users %}
+                <option value="{{ user }}">{{ user }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="amount">Betrag:</label>
+            <input type="number" id="amount" name="amount" required step="0.01"><br>
+            <button type="submit">Abheben</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    </main>
+</body>
+</html>
