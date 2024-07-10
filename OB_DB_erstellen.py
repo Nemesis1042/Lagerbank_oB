@@ -56,26 +56,26 @@ def create_database(datenbankname):
     ''')
     cursor.connection.commit()
     
-    
+    # Tabelle "Einstellungen" erstellen
     cursor.execute('''CREATE TABLE IF NOT EXISTS Einstellungen (
-        Name TEXT PRIMARY KEY,
-        Wert TEXT NOT NULL
-    );
-    ''')
+        first_day DATE,
+        last_day DATE,
+        Zeltlager INT
+    );''')
     cursor.connection.commit()
-    
 
-    cursor.execute('''INSERT INTO Einstellungen (Name, Wert) SELECT 'ErsterTag', '01/01/2024' WHERE NOT EXISTS (SELECT 1 FROM Einstellungen WHERE Name = 'ErsterTag')''')
+    # Daten in die Tabelle "Einstellungen" einfügen
+    cursor.execute('''INSERT INTO Einstellungen (first_day, last_day, Zeltlager) 
+                      SELECT '2024-01-01', '2024-12-31', '2024' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Einstellungen)''')
     cursor.connection.commit()
-    print("First Day wurden erfolgreich erstellt!")
-    print("01/01/2024")
+    print("Einstellungen wurden erfolgreich erstellt!")
+    print("2024")
     
-    cursor.execute('''INSERT INTO Einstellungen (Name, Wert) SELECT 'LetzterTag', '10/01/2024' WHERE NOT EXISTS (SELECT 1 FROM Einstellungen WHERE Name = 'LetzterTag')''')
-    cursor.connection.commit()
-    print("Last Day wurden erfolgreich erstellt!")
-    print("10/01/2024")
-    
-    cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) SELECT 'Wasser', '0.50', '0' WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Wasser')''')
+    # Daten in die Tabelle "Produkt" einfügen
+    cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) 
+                      SELECT 'Wasser', '0.50', '0' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Wasser')''')
     cursor.connection.commit()
     print("Produkt wurde erfolgreich erstellt!")
     print("Wasser")

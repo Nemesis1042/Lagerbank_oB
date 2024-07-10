@@ -6,7 +6,7 @@
     <title>Datenbank löschen</title>
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <style>
-        body, html {
+        body{
             height: 100%;
             margin: 0;
             display: flex;
@@ -61,20 +61,23 @@
         button:hover {
             background-color: #ff1a66;
         }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #333;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Datenbank löschen <h1>
+      <nav>
+          <ul>
+              <li><a href="/open_barcode">Barcode-Transaktionen</a></li>
+              <li><a href="/add_user">Nutzer hinzufügen</a></li>
+              <li><a href="/watch">Auswertung</a></li>
+              <li><a href="#" onclick="history.back();">Zurück</a><li>
+          </ul>
+      </nav>
+    </header>
     <div>
-        <h1>Datenbank löschen</h1>
-        <a href="#" onclick="history.back();">Zurück</a>
+        <h1>Datenbank auswählen</h1>
+        
         <form method="post">
             <label for="password">Passwort:</label>
             <input type="password" id="password" name="password" required><br>

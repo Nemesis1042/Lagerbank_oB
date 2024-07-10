@@ -1,6 +1,7 @@
 import os
 from sympy import im
 import sqlite3
+from database import Database as db
 
 
 class Config:
@@ -12,3 +13,5 @@ class db_backup:
     source_file = 'Lagerbank2024.db'
     backup_directory = '/home/arkatosh/Documents/Offline_Banking'
 
+class Zeltlager:
+    lager = 2024

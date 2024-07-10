@@ -51,13 +51,13 @@
         
             if (firstDayInput) {
                 var firstDayParts = firstDayInput.split('-');
-                var formattedFirstDay = firstDayParts[2] + '/' + firstDayParts[1] + '/' + firstDayParts[0];
+                var formattedFirstDay = firstDayParts[2] + '-' + firstDayParts[1] + '-' + firstDayParts[0];
                 document.getElementById('formatted_first_day').value = formattedFirstDay;
             }
         
             if (lastDayInput) {
                 var lastDayParts = lastDayInput.split('-');
-                var formattedLastDay = lastDayParts[2] + '/' + lastDayParts[1] + '/' + lastDayParts[0];
+                var formattedLastDay = lastDayParts[2] + '-' + lastDayParts[1] + '-' + lastDayParts[0];
                 document.getElementById('formatted_last_day').value = formattedLastDay;
             }
         });
