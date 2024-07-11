@@ -72,16 +72,44 @@ def create_database(datenbankname):
     print("Einstellungen wurden erfolgreich erstellt!")
     print("2024")
     
-    # Daten in die Tabelle "Produkt" einfügen
     cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) 
-                      SELECT 'Wasser', '0.50', '0' 
-                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Wasser')''')
+                      SELECT 'Medium', '0.40', '0' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Medium')''')
     cursor.connection.commit()
-    print("Produkt wurde erfolgreich erstellt!")
-    print("Wasser")
+    print("Medium")
+    
+    cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) 
+                      SELECT 'Still', '0.40', '0' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Still')''')
+    cursor.connection.commit()
+    print("Still")
+    
+    cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) 
+                      SELECT 'Cola-Mix', '0.60', '0' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Cola-Mix')''')
+    cursor.connection.commit()
+    print("Cola-Mix")
+    
+    cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) 
+                      SELECT 'Rote-Schorle', '0.65', '0' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Rote-Schorle')''')
+    cursor.connection.commit()
+    print("Rote-Schorle")
+    
+    cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) 
+                      SELECT 'Apfelschorle', '0.65', '0' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Apfelschorle')''')
+    cursor.connection.commit()
+    print("Apfelschorle")
+    
+    cursor.execute('''INSERT INTO Produkt (Beschreibung, Preis, Anzahl_verkauft) 
+                      SELECT 'ISO-Grape', '0.65', '0' 
+                      WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'ISO-Grape')''')
+    cursor.connection.commit()
+    print("ISO-Grape")
+    
     # Verbindung schließen
     connection.close()
     print(f'Datenbank "{datenbankname}" wurde erfolgreich erstellt!')
 
 create_database(datenbankname)
-
