@@ -36,7 +36,7 @@
 2. **Bibliotheken installieren:**
    - Öffne die Eingabeaufforderung (cmd) oder das Terminal und führe folgenden Befehl aus:
      ```
-     pip install numpy pandas Flask Flask-Cors cryptography
+     pip install numpy pandas flask
      ```
 
 ## Benutzerdefinierte Module und Konfigurationen
