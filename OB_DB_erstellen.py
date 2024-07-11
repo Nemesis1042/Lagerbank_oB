@@ -78,7 +78,7 @@ def create_database(datenbankname):
                       WHERE NOT EXISTS (SELECT 1 FROM Produkt WHERE Beschreibung = 'Wasser')''')
     cursor.connection.commit()
     print("Produkt wurde erfolgreich erstellt!")
-    print("Wasser")
+    
     # Verbindung schließen
     connection.close()
     print(f'Datenbank "{datenbankname}" wurde erfolgreich erstellt!')
