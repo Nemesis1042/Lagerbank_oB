@@ -7,6 +7,7 @@ from datetime import datetime # Für Zeitstempel
 import numpy as np  #
 import pandas as pd     # Für Datenverarbeitung und -analyse
 import shutil   # Für Dateioperationen
+from crypt import methods   # Für Verschlüsselungsalgorithmen
 from typing import List, Tuple, Callable    # Für Typenangaben
 
 # Flask und zugehörige Erweiterungen
