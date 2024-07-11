@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!--<link rel="stylesheet" type="text/css" href="/static/style.css">-->
+    <style>
+        /* CSS-Design für die Admin-Seite */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+        .admin-content {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .admin-content h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .admin-link {
+            display: block;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            background-color: #ff004d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .admin-link:hover {
+            background-color: #ff1a66;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+    </header>
+    /*Vlt noch in main machen*/
+    <div class="admin-content">
+        <a href="/" class="admin-link">Zurück zur Startseite</a>
+        <a href="/settings" class="admin-link">Einstellungen</a>
+        <a href="/kaufstatistik" class="admin-link"> Kaufstatistik</a>
+        <a href="/geld_aufteilen" class="admin-link"> Geldaufteilung</a>
+        <a href="/add_user" class="admin-link">Benutzer hinzufügen</a>
+        <a href="/edit_user" class="admin-link">Benutzer bearbeiten</a>
+        <a href="/add_fund" class="admin-link">Guthaben hinzufügen</a>
+        <a href="/withdraw_fund" class="admin-link">Guthaben abheben</a>
+        <a href="/add_product" class="admin-link">Produkt hinzufügen</a>
+        <a href="/edit_product_prices" class="admin-link">Produkt bearbeiten</a>
+        <a href="/checkout_tn" class="admin-link">Teilnehmer auschecken</a>
+        <a href="/backup" class="admin-link">Datenbank sichern</a>
+        <a href="/delete_database" class="admin-link">Datenbank löschen</a>
+    </div>
+</body>
+</html>

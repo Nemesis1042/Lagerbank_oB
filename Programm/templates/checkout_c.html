@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Checkout Status</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        flex-direction: column;
+        background-color: #f5f5f5; /* Hintergrundfarbe für die gesamte Seite */
+      }   
+      .container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 80%;
+        max-width: 600px;
+        margin: auto;
+      }
+
+      h1, h2 {
+        text-align: center;
+        color: #333;
+      }
+
+      p {
+        color: #333;
+        margin: 10px 0;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+      }
+
+      li {
+        background-color: #f0f0f0;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      li:hover {
+        background-color: #e0e0e0;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ff004d;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+      }
+      button:hover {
+        background-color: #ff1a66;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Checkout Status</h1>
+      <nav>
+          <ul>
+              <li><a href="/open_barcode">Barcode-Transaktionen</a></li>
+              <li><a href="/add_user">Nutzer hinzufügen</a></li>
+              <li><a href="/watch">Auswertung</a></li>
+              <li><a href="/admin">Einstellungen</a></li>
+          </ul>
+      </nav>
+  </header>
+  <main>
+    <div class="container">
+      
+      
+      <p>Benutzer: {{ benutzer_id }}</p>
+      <p>Kontostand: {{ kontostand }} €</p>
+      <h2>Benötigte Geldaufteilung</h2>
+      <ul>
+        <li>20€ Scheine: {{ geldwerte[0] }}</li>
+        <li>10€ Scheine: {{ geldwerte[1] }}</li>
+        <li>5€ Scheine: {{ geldwerte[2] }}</li>
+        <li>2€ Münzen: {{ geldwerte[3] }}</li>
+        <li>1€ Münzen: {{ geldwerte[4] }}</li>
+        <li>50 Cent Münzen: {{ geldwerte[5] }}</li>
+        <li>20 Cent Münzen: {{ geldwerte[6] }}</li>
+        <li>10 Cent Münzen: {{ geldwerte[7] }}</li>
+        <li>5 Cent Münzen: {{ geldwerte[8] }}</li>
+        <li>2 Cent Münzen: {{ geldwerte[9] }}</li>
+        <li>1 Cent Münzen: {{ geldwerte[10] }}</li>
+      </ul>
+      <form action="{{ url_for('confirm_checkout') }}" method="post">
+        <input type="hidden" name="user" value="{{ benutzer_id }}">
+        <button type="submit">Checkout bestätigen</button>
+      </form>
+    </div>
+  </main>
+  </body>
+</html>
