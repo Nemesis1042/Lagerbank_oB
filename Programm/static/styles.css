@@ -1,0 +1,201 @@
+:root {
+    --text-color: #fff; /* Schriftfarbe für dunkles Thema */
+    --background-color: #333; /* Hintergrundfarbe für dunkles Thema */
+    --link-color: #fff; /* Linkfarbe für dunkles Thema */
+}
+
+[data-theme="dark"] {
+    --text-color: #fff; /* Schriftfarbe für dunkles Thema */
+    --background-color: #333; /* Hintergrundfarbe für dunkles Thema */
+    --link-color: #fff; /* Linkfarbe für dunkles Thema */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #333;
+    color: #fdfbfb
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ff004d;
+    color: var(--link-color);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #ff1a66;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+a {
+    display: column;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ff004d;
+    color: var(--link-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff1a66;
+}
+
+form, .container, .admin-content {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+p, label {
+    color: var(--text-color);
+    margin: 10px 0;
+    display: block;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input[type="text"], input[type="number"], input[type="password"], select, input[type="submit"], button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 10px auto;
+}
+
+input[type="text"]:hover, input[type="number"]:hover, input[type="password"]:hover, select:hover, input[type="submit"]:hover, button:hover {
+    background-color: #f0f0f0;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus {
+    outline: none;
+}
+
+input[type="submit"], .admin-link, .highlight {
+    background-color: #ff004d;
+    color: var(--link-color);
+}
+
+input[type="submit"]:hover, .admin-link:hover, .highlight:hover {
+    background-color: #ff1a66;
+}
+
+.admin-link {
+    display: block;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 1px 0;
+    }
+
+    li {
+        margin: 2px;
+    }
+
+    a {
+        margin: 5px;
+        display: block;
+    }
+}
+
+/* Force dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #fff;
+        --background-color: #333;
+        --link-color: #fff;
+    }
+}

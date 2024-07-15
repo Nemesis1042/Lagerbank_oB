@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kauf hinzufügen</title>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -73,7 +73,29 @@
         input[type="submit"]:hover {
             background-color: #ff1a66;
         }
-    </style>
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                margin: 0;
+                padding: 0;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 1px 0;
+            }
+
+            li {
+                margin: 2px;
+            }
+
+            a {
+                margin: 5px;
+                display: block;
+            }
+        }
+    </style> 
 </head>
 <body>
     <header>
