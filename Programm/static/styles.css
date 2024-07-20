@@ -1,6 +1,6 @@
 :root {
-    --text-color: #fff; /* Schriftfarbe für dunkles Thema */
-    --background-color: #333; /* Hintergrundfarbe für dunkles Thema */
+    --text-color: #0a0101; /* Schriftfarbe für dunkles Thema */
+    --background-color: #fdfdfd; /* Hintergrundfarbe für dunkles Thema */
     --link-color: #fff; /* Linkfarbe für dunkles Thema */
 }
 
@@ -8,6 +8,10 @@
     --text-color: #fff; /* Schriftfarbe für dunkles Thema */
     --background-color: #333; /* Hintergrundfarbe für dunkles Thema */
     --link-color: #fff; /* Linkfarbe für dunkles Thema */
+}
+
+.topic{
+    color: #f0f0f0
 }
 
 body {
