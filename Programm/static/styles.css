@@ -215,6 +215,10 @@ input[type="submit"]:hover, .admin-link:hover, .highlight:hover {
         margin: 5px;
         display: block;
     }
+    .topic{
+        color: #f0f0f0
+    }
+
 }
 
 /* Force dark mode */

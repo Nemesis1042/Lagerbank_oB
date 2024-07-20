@@ -4,6 +4,7 @@ import sqlite3  # Für Datenbankzugriff
 from datetime import datetime # Für Zeitstempel
 
 # Externe Bibliotheken
+import subprocess #
 import numpy as np  #
 import pandas as pd     # Für Datenverarbeitung und -analyse
 import shutil   # Für Dateioperationen
@@ -328,12 +329,27 @@ def login():
         if password == '1':
             return redirect(url_for('admin'))
         else:
-            flash('Invalid password, try again.', 'danger')
+            print('Invalid password, try again.', 'danger')
     return render_template('login.html')
 
 @app.route('/admin')
 def admin():
     return render_template('admin.html')
+
+@app.route('/dblogin', methods=['GET', 'POST'])  # Hinzufügen des fehlenden Schrägstrichs
+def dblogin():
+    if request.method == 'POST':
+        passworddb = request.form['passworddb']
+        if passworddb == 'FwvdDB':
+            return redirect(url_for('datenbankverwaltung'))
+        else:
+            print('Invalid password, try again.', 'danger')
+    return render_template('loginform.html')
+
+@app.route('/db_create')
+def db_create():
+    os.system('python3 OB_DB_erstellen.py')
+    return redirect(url_for('index'))
 
 @app.route('/teilnehmer')
 def teilnehmer():
@@ -711,5 +727,6 @@ def settings():
     
     return render_template('settings.html', first_day=first_day, lager_dauer=lager_dauer, last_day=last_day, today=heute)
 
+
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
