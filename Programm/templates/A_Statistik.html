@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="topic">Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Startseite</a></li>
+                <li><a href="/add_buy">Kauf hinzufügen</a></li>
+                <li><a href="/watch">Übersicht</a></li>
+                <li><a href="#" onclick="history.back();">Zurück</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="admin-content">
+        <h2>Statisiken</h2>
+        <a href="/kaufstatistik" class="admin-link">Kaufstatistik</a>
+        <a href="/geld_aufteilen" class="admin-link">Geldaufteilung</a>
+        <a href="/watch" class="admin-link">Übersicht</a>
+    </div>

@@ -335,6 +335,22 @@ def login():
 def admin():
     return render_template('admin.html')
 
+@app.route('/teilnehmer')
+def teilnehmer():
+    return render_template('A_TN.html')
+
+@app.route('/produkte')
+def produkte():
+    return render_template('A_Produkte.html')
+
+@app.route('/statistik')
+def statistik():
+    return render_template('A_Statistik.html')
+
+@app.route('/datenbankverwaltung')
+def datenbankverwaltung():
+    return render_template('A_DB.html')
+
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':

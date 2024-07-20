@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="topic">Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Startseite</a></li>
+                <li><a href="/add_buy">Kauf hinzufügen</a></li>
+                <li><a href="/watch">Übersicht</a></li>
+                <li><a href="#" onclick="history.back();">Zurück</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="admin-content">
+        <h2>Teilnehmerverwaltung</h2>
+        <a href="/add_user" class="admin-link">Benutzer hinzufügen</a>
+        <a href="/edit_user" class="admin-link">Benutzer bearbeiten</a>
+        <a href="/add_fund" class="admin-link">Guthaben hinzufügen</a>
+        <a href="/withdraw_fund" class="admin-link">Guthaben abheben</a>
+        <h2>Checkout</h2>
+        <a href="/checkout_tn" class="admin-link">Teilnehmer auschecken</a>
+    </div>

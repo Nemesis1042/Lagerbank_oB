@@ -189,7 +189,6 @@ input[type="submit"]:hover, .admin-link:hover, .highlight:hover {
     cursor: pointer;
     margin: 10px 20px;
     transition: background-color 0.3s;
-
 }
 .bt:hover {
     background-color: #f33f7b;
