@@ -73,17 +73,27 @@
     </style>-->
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1 class="topic">Geld Aufteilen</h1>
-        <a href="#" onclick="history.back();">Zurück</a>
-        <ul>
-            {% for denom, count in results.counts.items() %}
-                <li>{{ denom }} €: {{ count }}x</li>
-            {% endfor %}
-            <li class="highlight">Summe: {{ results.sume | round(2) }} €</li>
-            <li class="highlight">Gesamt Kontostand: {{ results.gesamt_kontostand | round(2) }} €</li>
-        </ul>
-        <a href="/">Zurück zur Startseite</a>
-    </div>
+        <nav>
+            <ul>
+                <li><a href="/">Startseite</a></li>
+                <li><a href="/add_buy">Kauf hinzufügen</a></li>
+                <li><a href="/watch">Übersicht</a></li>
+                <li><a href="#" onclick="history.back();">Zurück</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">            
+            <ul>
+                {% for denom, count in results.counts.items() %}
+                    <li class="li">{{ denom }} €: {{ count }}x</li>
+                {% endfor %}
+                <li class="highlight">Summe: {{ results.sume | round(2) }} €</li>
+                <li class="highlight">Gesamt Kontostand: {{ results.gesamt_kontostand | round(2) }} €</li>
+            </ul>
+        </div>
+    </main>
 </body>
 </html>

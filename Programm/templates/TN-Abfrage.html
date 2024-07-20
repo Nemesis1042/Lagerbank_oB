@@ -72,15 +72,16 @@
       <h1 class="topic">Teilnehmer auschecken</h1>
       <nav>
           <ul>
-              <li><a href="/open_barcode">Barcode-Transaktionen</a></li>
-              <li><a href="/add_user">Nutzer hinzufügen</a></li>
+              <li><a href="/">Startseite</a></li>
+              <li><a href="/add_buy">Kauf hinzufügen</a></li>
               <li><a href="/watch">Auswertung</a></li>
               <li><a href="/admin">Einstellungen</a></li>
+              <li><a href="#" onclick="history.back();">Zurück</a></li>
           </ul>
       </nav>
   </header>
   <main>
-    <div class="container">
+    <div class="">
       <h1>Teilnehmer auswählen</h1>
       <form action="{{ url_for('checkout') }}" method="post">
         <select name="user">

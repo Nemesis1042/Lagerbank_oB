@@ -76,13 +76,12 @@
     </header>
     <main>
     <div>
-        
         <form method="post">
             <label for="user">Teilnehmername:</label>
             <input type="text" id="user" name="user" required><br>
             <label for="amount">Einzahlungsbetrag:</label>
             <input type="number" id="amount" name="amount" required step="0.01"><br>
-            <button type="submit">Hinzufügen</button>
+            <button class="bt" type="submit">Hinzufügen</button>
         </form>
         {% with messages = get_flashed_messages() %}
             {% if messages %}

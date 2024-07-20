@@ -4,11 +4,11 @@
     --link-color: #fff; /* Linkfarbe für dunkles Thema */
 }
 
-[data-theme="dark"] {
+/* [data-theme="dark"] {
     --text-color: #fff; /* Schriftfarbe für dunkles Thema */
-    --background-color: #333; /* Hintergrundfarbe für dunkles Thema */
-    --link-color: #fff; /* Linkfarbe für dunkles Thema */
-}
+    /*--background-color: #333; /* Hintergrundfarbe für dunkles Thema */
+    /*--link-color: #fff; /* Linkfarbe für dunkles Thema */
+/*} */
 
 .topic{
     color: #f0f0f0
@@ -99,12 +99,12 @@ button:hover {
 }
 
 form, .container, .admin-content {
-    background-color: var(--background-color);
+    background-color: #a5a3a3a4;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 80%;
+    width: 100%;
     max-width: 600px;
     margin: auto;
 }
@@ -131,6 +131,14 @@ li {
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
+}
+
+.li{
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0c0c0de;
+
 }
 
 input[type="text"], input[type="number"], input[type="password"], select, input[type="submit"], button {
@@ -172,6 +180,21 @@ input[type="submit"]:hover, .admin-link:hover, .highlight:hover {
     text-align: center;
 }
 
+.bt{
+    padding: 10px 20px;
+    background-color: #ff004d;
+    color: var(--link-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 20px;
+    transition: background-color 0.3s;
+
+}
+.bt:hover {
+    background-color: #f33f7b;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     nav ul {
@@ -196,7 +219,7 @@ input[type="submit"]:hover, .admin-link:hover, .highlight:hover {
 }
 
 /* Force dark mode */
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
     :root {
         --text-color: #fff;
         --background-color: #333;

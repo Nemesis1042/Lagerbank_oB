@@ -79,16 +79,16 @@
     <main>
         <div>
             <form method="post" action="{{ url_for('edit_user') }}">
-                <label for="selected_user">Aktueller Benutzername:</label>
+                <label for="selected_user">Aktueller Teilnehmername:</label>
                 <select id="selected_user" name="selected_user">
                     {% for user in users %}
                     <option value="{{ user }}">{{ user }}</option>
                     {% endfor %}
                 </select><br>
-                <label for="new_name">Neuer Benutzername:</label>
-                <input type="text" id="new_name" name="new_name"><br>
-                <button type="submit" name="action" value="update">Aktualisieren</button>
-                <button type="submit" name="action" value="delete" onclick="return confirmDelete();">Benutzer löschen</button>
+                <label for="new_name">Neuer Teilnehmername:</label>
+                <input type="text" id="new_name" name="new_name" placeholder="Neuer Teilnehmername"><br>
+                <button class="bt" type="submit" name="action" value="update">Aktualisieren</button>
+                <button class="bt" type="submit" name="action" value="delete" onclick="return confirmDelete();">Benutzer löschen</button>
             </form>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}

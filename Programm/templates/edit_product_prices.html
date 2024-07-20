@@ -103,9 +103,9 @@
                     {% endfor %}
                 </select><br>
                 <label for="new_price">Neuer Preis:</label>
-                <input type="text" id="new_price" name="new_price"><br>
-                <button type="submit" name="action" value="update">Aktualisieren</button>
-                <button type="submit" name="action" value="delete" onclick="return confirmDelete();">Produkt löschen</button>
+                <input type="text" id="new_price" name="new_price" placeholder="Preis"><br>
+                <button class="bt" type="submit" name="action" value="update">Aktualisieren</button>
+                <button class="bt" type="submit" name="action" value="delete" onclick="return confirmDelete();">Produkt löschen</button>
             </form>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}

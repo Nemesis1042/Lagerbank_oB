@@ -65,10 +65,10 @@
             
             <form method="post">
                 <label for="product">Produktname:</label>
-                <input type="text" id="product" name="product" required><br>
+                <input type="text" id="product" name="product" placeholder="Produktname" required><br>
                 <label for="price">Preis:</label>
-                <input type="number" id="price" name="price" required step="0.01"><br>
-                <button type="submit">Hinzufügen</button>
+                <input type="number" id="price" name="price" required placeholder="Preis" step="0.01"><br>
+                <button class="bt" type="submit">Hinzufügen</button>
             </form>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
