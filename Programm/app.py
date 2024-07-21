@@ -111,16 +111,18 @@ def fetch_transactions(db: Database, user_id: int) -> List[Tuple]:
 
 def kontostand_in_geld(kontostand):
     if kontostand:
-        kontostand_value = kontostand[0][0]
+        kontostand_value = kontostand
         zwischenstand = round(kontostand_value, 2)
     else:
         kontostand_value = 0
         zwischenstand = 0
     denominations = [20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
-    counts = []
+    
+    counts = {denom: 0 for denom in denominations}  # Korrektur: Initialisierung des Dictionaries
+    
     for denom in denominations:
-        count = zwischenstand // denom
-        counts.append(count)
+        count = int(zwischenstand) // denom
+        counts[denom] += count  # Korrektur: Verwendung von counts[denom] anstelle von counts.append(count)
         zwischenstand -= count * denom
     return counts
 
@@ -293,7 +295,7 @@ def submit_buy():
         print('Purchase submitted successfully', 'success')
     else:
         print('Error submitting purchase', 'danger')
-    return redirect(url_for('add_buy'))
+    return redirect(url_for('index'))
 
 @app.route('/watch')
 def watch():
@@ -404,10 +406,13 @@ def add_fund():
         else:
             
             user_balance = cur.execute("SELECT Kontostand FROM Konto JOIN Teilnehmer ON Konto.T_ID = Teilnehmer.T_ID WHERE Teilnehmer.Name = ?", (user,)).fetchone()
+            user_einzahlung = cur.execute("SELECT Einzahlung FROM Konto JOIN Teilnehmer ON Konto.T_ID = Teilnehmer.T_ID WHERE Teilnehmer.Name = ?", (user,)).fetchone()
             if user_balance:
                 new_balance = user_balance['Kontostand'] + amount
                 cur.execute("UPDATE Konto SET Kontostand = ? WHERE T_ID = (SELECT T_ID FROM Teilnehmer WHERE Name = ?)", (new_balance, user))
                 cur.execute("INSERT INTO Transaktion (K_ID, P_ID, Typ, Menge, Datum) VALUES ((SELECT T_ID FROM Teilnehmer WHERE Name = ?), 0, 'Einzahlung', ?, ?)", (user, amount, datetime.now().strftime("%d.%m.%Y %H:%M:%S")))
+                new_einzahlung = user_einzahlung['Einzahlung'] + amount
+                cur.execute("UPDATE Konto SET Einzahlung = ? WHERE T_ID = (SELECT T_ID FROM Teilnehmer WHERE Name = ?)", (new_einzahlung, user)) # Update the deposit
                 conn.commit()
                 print(f'{amount} € erfolgreich hinzugefügt.', 'success')
             else:
@@ -579,16 +584,34 @@ def checkout():
     if not benutzer_id:
         print("Bitte wählen Sie einen Teilnehmer aus.", 'danger')
         return redirect(url_for('index'))
+    
     with Database() as db:
         users = db.execute_select("SELECT Name FROM Teilnehmer ORDER BY Name")
         if benutzer_id not in [user[0] for user in users]:
             print("Der ausgewählte Teilnehmer existiert nicht.", 'danger')
-            return redirect(url_for('index'))
+            alert = "Der ausgewählte Teilnehmer existiert nicht."
+            return redirect(url_for('index', alert=alert))
+        
         kontostand = db.execute_select("SELECT Kontostand FROM Konto WHERE T_ID = (SELECT T_ID FROM Teilnehmer WHERE Name = ?)", (benutzer_id,))
+        kontostand = float(kontostand[0][0])
+        kontostand = round(kontostand, 2)
+        
         geldwerte = kontostand_in_geld(kontostand)
         if geldwerte is None:
             geldwerte = [0] * 11
-        return render_template('checkout_c.html', benutzer_id=benutzer_id, kontostand=kontostand[0][0] if kontostand else 0, geldwerte=geldwerte)
+        
+        # Calculate the breakdown of banknotes and coins
+        denominations = [20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
+        counts = {denom: 0 for denom in denominations}
+        zwischenstand = kontostand
+        
+        for denom in denominations:
+            count = int(zwischenstand // denom)
+            counts[denom] = count
+            zwischenstand -= count * denom
+            zwischenstand = round(zwischenstand, 10)
+        
+        return render_template('checkout_c.html', benutzer_id=benutzer_id, kontostand=kontostand if kontostand else 0, geldwerte=geldwerte, counts=counts)
 
 @app.route('/confirm_checkout', methods=['POST'])
 def confirm_checkout():
