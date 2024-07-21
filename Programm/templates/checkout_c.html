@@ -109,9 +109,9 @@
         <li>2 Cent Münzen: {{ geldwerte[9] }}</li>
         <li>1 Cent Münzen: {{ geldwerte[10] }}</li>
       </ul>
-      <form action="{{ url_for('confirm_checkout') }}" method="post">
+      <form  action="{{ url_for('confirm_checkout') }}" method="post">
         <input type="hidden" name="user" value="{{ benutzer_id }}">
-        <button type="submit">Checkout bestätigen</button>
+        <button class="bt" type="submit">Checkout bestätigen</button>
       </form>
     </div>
   </main>

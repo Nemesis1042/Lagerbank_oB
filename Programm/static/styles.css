@@ -187,8 +187,10 @@ input[type="submit"]:hover, .admin-link:hover, .highlight:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 10px 20px;
+    margin: 10px auto;
     transition: background-color 0.3s;
+    display: block;
+    text-align: center;
 }
 .bt:hover {
     background-color: #f33f7b;

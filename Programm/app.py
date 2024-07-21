@@ -278,7 +278,9 @@ def add_buy():
         return redirect(url_for('add_buy'))
     users = get_users_from_db()
     products = get_products_from_db()
-    return render_template('add_buy.html', users=users, products=products)
+    db = Database()  # Stellen Sie sicher, dass db korrekt initialisiert ist
+    IDs = db.execute_select("SELECT T_ID FROM Teilnehmer")  # Korrekte Verwendung
+    return render_template('add_buy.html', users=users, products=products, IDs=IDs)
 
 @app.route('/submit_buy', methods=['POST'])
 def submit_buy():
@@ -320,7 +322,7 @@ def watch():
     result = cursor.execute(sql_query).fetchall()
     conn.close()
     df = pd.DataFrame(result, columns=[desc[0] for desc in cursor.description])
-    return render_template('watch.html', tables=df.to_html(classes='data', header="true", index=False))
+    return render_template('watch.html', tables=df.to_html(classes='data', header=True, index=False))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -519,7 +521,7 @@ def edit_product_prices():
         action = request.form.get('action')
         if action == 'update':
             new_price_str = request.form.get('new_price')
-            if new_price_str.strip():
+            if new_price_str:
                 try:
                     new_price = float(new_price_str)
                 except ValueError:

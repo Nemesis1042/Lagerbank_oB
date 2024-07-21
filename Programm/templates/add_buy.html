@@ -5,97 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kauf hinzufügen</title>
     <link rel="stylesheet" href="/static/styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #ff004d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 0;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #ff1a66;
-            color: black;
-        }
-
-        form {
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin: 10px auto;
-        }
-
-        select, input[type="number"], input[type="submit"] {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ffffff;
-            color: #333;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: block;
-            margin: 10px auto;
-        }
-
-        select:hover, input[type="number"]:hover, input[type="submit"]:hover {
-            background-color: #f0f0f0;
-        }
-
-        input[type="submit"] {
-            background-color: #ff004d;
-            color: white;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #ff1a66;
-        }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                margin: 0;
-                padding: 0;
-            }
-
-            nav ul li {
-                display: block;
-                margin: 1px 0;
-            }
-
-            li {
-                margin: 2px;
-            }
-
-            a {
-                margin: 5px;
-                display: block;
-            }
-        }
-    </style> 
 </head>
 <body>
     <header>
@@ -119,6 +28,13 @@
                     <option value="{{ user }}">{{ user }}</option>
                     {% endfor %}
                 </select>
+                <!--<div id="numberMatrix" style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    {% for user in users %}
+                        <button type="button" onclick="selectUser('{{ user.id }}')" style="margin: 5px;">{{ user.name }}</button>
+                    {% else %}
+                        <p>Keine Teilnehmer verfügbar.</p>
+                    {% endfor %}
+                </div>-->
                 <label for="product">Produkt wählen:</label>
                 <select id="product" name="product">
                     {% for product in products %}
