@@ -6,6 +6,27 @@
     <title>Kauf hinzufügen</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
+<style>
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+form label {
+    margin-right: 10px;
+}
+
+form input[type="number"],
+form select {
+    margin-right: 10px;
+}
+</style>
 <body>
     <header>
         <h1 class="topic">Kauf</h1>
@@ -28,26 +49,74 @@
                     <option value="{{ user }}">{{ user }}</option>
                     {% endfor %}
                 </select>
-                <!--<div id="numberMatrix" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                    {% for user in users %}
-                        <button type="button" onclick="selectUser('{{ user.id }}')" style="margin: 5px;">{{ user.name }}</button>
-                    {% else %}
-                        <p>Keine Teilnehmer verfügbar.</p>
-                    {% endfor %}
-                </div>-->
-                <label for="product">Produkt wählen:</label>
-                <select id="product" name="product">
-                    {% for product in products %}
-                    <option value="{{ product }}">{{ product }}</option>
-                    {% endfor %}
-                </select>
-                <label for="quantity">Menge wählen:</label>
-                <input type="number" id="quantity" name="quantity" min="1" max="6" value="1">
+                <div>
+                    <label for="product_1">Produkt wählen:</label>
+                    <select id="product_1" name="product_1">
+                        {% for product in products %}
+                        <option value="{{ product }}">{{ product }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="quantity_1">Menge wählen:</label>
+                    <input type="number" id="quantity_1" name="quantity_1" min="1" max="6" value="1">
+                </div>
                 <input type="hidden" id="TN_Barcode" name="TN_Barcode">
                 <input type="submit" value="Kauf hinzufügen">
             </form>
         </div>
     </main>
-   
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let i = 2;
+            const form = document.getElementById('buyForm');
+            const addButton = document.createElement('button');
+            addButton.type = 'button';
+            addButton.textContent = 'Weiteres Produkt hinzufügen';
+            const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'product_count';
+                hiddenInput.value = i;
+                form.appendChild(hiddenInput);
+            form.insertBefore(addButton, form.querySelector('input[type="submit"]'));
+
+            addButton.addEventListener('click', () => {
+                const container = document.createElement('div');
+                container.style.display = 'flex';
+                container.style.alignItems = 'center';
+                container.style.marginBottom = '10px';
+
+                const productLabel = document.createElement('label');
+                productLabel.textContent = 'Produkt wählen:';
+                container.appendChild(productLabel);
+
+                const productSelect = document.createElement('select');
+                productSelect.name = `product_${i}`;
+                {% for product in products %}
+                {
+                    const option = document.createElement('option');
+                    option.value = "{{ product }}";
+                    option.textContent = "{{ product }}";
+                    productSelect.appendChild(option);
+                }
+                {% endfor %}
+                container.appendChild(productSelect);
+
+                const quantityLabel = document.createElement('label');
+                quantityLabel.textContent = 'Menge wählen:';
+                container.appendChild(quantityLabel);
+
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'number';
+                quantityInput.name = `quantity_${i}`;
+                quantityInput.min = '1';
+                quantityInput.max = '6';
+                quantityInput.value = '1';
+                container.appendChild(quantityInput);
+
+                form.insertBefore(container, addButton);
+                i++;
+                
+            });
+        });
+    </script>
 </body>
 </html>
