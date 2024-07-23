@@ -59,7 +59,8 @@ form select {
                     <label for="quantity_1">Menge wählen:</label>
                     <input type="number" id="quantity_1" name="quantity_1" min="1" max="6" value="1">
                 </div>
-                <input type="hidden" id="TN_Barcode" name="TN_Barcode">
+                
+                <input type="hidden" name="product_count" value="1" id="product_count">
                 <input type="submit" value="Kauf hinzufügen">
             </form>
         </div>
@@ -77,6 +78,7 @@ form select {
                 hiddenInput.value = i;
                 form.appendChild(hiddenInput);
             form.insertBefore(addButton, form.querySelector('input[type="submit"]'));
+            const productCountInput = document.getElementById('product_count');
 
             addButton.addEventListener('click', () => {
                 const container = document.createElement('div');
@@ -86,10 +88,12 @@ form select {
 
                 const productLabel = document.createElement('label');
                 productLabel.textContent = 'Produkt wählen:';
+                productLabel.setAttribute('for', `product_${i}`);
                 container.appendChild(productLabel);
 
                 const productSelect = document.createElement('select');
                 productSelect.name = `product_${i}`;
+                productSelect.id = `product_${i}`;
                 {% for product in products %}
                 {
                     const option = document.createElement('option');
@@ -102,19 +106,23 @@ form select {
 
                 const quantityLabel = document.createElement('label');
                 quantityLabel.textContent = 'Menge wählen:';
+                quantityLabel.setAttribute('for', `quantity_${i}`);
                 container.appendChild(quantityLabel);
 
                 const quantityInput = document.createElement('input');
                 quantityInput.type = 'number';
                 quantityInput.name = `quantity_${i}`;
+                quantityInput.id = `quantity_${i}`;
                 quantityInput.min = '1';
                 quantityInput.max = '6';
                 quantityInput.value = '1';
                 container.appendChild(quantityInput);
 
                 form.insertBefore(container, addButton);
+
+                // Update product count
+                productCountInput.value = i;
                 i++;
-                
             });
         });
     </script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kauf Übersicht</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="topic">Kauf Übersicht</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Startseite</a></li>
+                <li><a href="/add_buy">Neuen Kauf hinzufügen</a></li>
+                <li><a href="#" onclick="history.back();">Zurück</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Vielen Dank für Ihren Kauf!</h2>
+            <p>Teilnehmerbarcode: {{ username }}</p>
+            <h3>Gekaufte Produkte:</h3>
+            <ul>
+                {% for product, quantity in paired_products %}
+                <li class="li">{{ product }} {{ quantity }}</li>
+                {% endfor %}
+            </ul>
+            <a href="/add_buy" class="bt">Weiteren Kauf hinzufügen</a>
+        </div>
+    </main>
+</body>
+</html>
