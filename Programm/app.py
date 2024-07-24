@@ -152,8 +152,6 @@ def create_transaction(käufer_name, produkt_barcode, menge):
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-       
-
         # Käufer-ID abrufen oder neu anlegen, falls nicht vorhanden
         cursor.execute('SELECT T_ID FROM Teilnehmer WHERE Name=?', (käufer_name,))
         row = cursor.fetchone()
@@ -162,7 +160,6 @@ def create_transaction(käufer_name, produkt_barcode, menge):
         else:
             cursor.execute('INSERT INTO Teilnehmer (Name, TN_Barcode) VALUES (?, ?)', (käufer_name, käufer_name))
             käufer_id = cursor.lastrowid
-
         # Produkt-ID abrufen
         cursor.execute('SELECT P_ID FROM Produkt WHERE P_Barcode=?', (produkt_barcode,))
         row = cursor.fetchone()
@@ -170,13 +167,11 @@ def create_transaction(käufer_name, produkt_barcode, menge):
             produkt_id = row[0]
         else:
             return False, f'Produkt mit Barcode "{produkt_barcode}" nicht gefunden.'
-
         # Überprüfen, ob bereits eine Transaktion für dieses Produkt existiert
         cursor.execute('SELECT TRANS_ID FROM Transaktion WHERE K_ID=? AND P_ID=?', (käufer_id, produkt_id))
         existing_transaction = cursor.fetchone()
         if existing_transaction:
             return False, f'Es existiert bereits eine Transaktion für das Produkt "{produkt_barcode}".'
-
         # Transaktion in die Datenbank einfügen
         datum = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute('INSERT INTO Transaktion (K_ID, P_ID, Typ, Menge, Datum) VALUES (?, ?, ?, ?, ?)',
@@ -286,16 +281,36 @@ def add_buy():
 
 @app.route('/submit_buy', methods=['POST'])
 def submit_buy():
+    product_count = int(request.form['product_count'])
     user = request.form['user']
-    product = request.form['product']
-    quantity = int(request.form['quantity'])
-    success = submit_purchase(user, product, quantity)
-    if success:
-        
+    products = [request.form[f'product_{i}'] for i in range(1, product_count + 1)]
+    quantities = [int(request.form[f'quantity_{i}']) for i in range(1, product_count + 1)]
+    
+    # Liste der Ergebnisse für jeden Kauf
+    results = [submit_purchase(user, product, quantity) for product, quantity in zip(products, quantities)]
+    
+    if all(results):
         print('Purchase submitted successfully', 'success')
+        # URL-Parameter für mehrere Produkte korrekt formatieren
+        products_param = '&'.join([f'products={product}' for product in products])
+        quantities_param = '&'.join([f'quantities={quantity}' for quantity in quantities])
+        return redirect(url_for('buy_check', username=user) + '&' + products_param + '&' + quantities_param)
     else:
         print('Error submitting purchase', 'danger')
+        # Optional: Details über die fehlgeschlagenen Käufe anzeigen
+        failed_purchases = [products[i] for i, success in enumerate(results) if not success]
+        print(f'Failed purchases: {failed_purchases}')
+    
     return redirect(url_for('index'))
+
+@app.route('/buy_check')
+def buy_check():
+    username = request.args.get('username')
+    products = request.args.getlist('products')
+    quantities = request.args.getlist('quantities')
+    
+    paired_products = zip(products, quantities)
+    return render_template('buy_check.html', username=username, paired_products=paired_products)
 
 @app.route('/watch')
 def watch():
