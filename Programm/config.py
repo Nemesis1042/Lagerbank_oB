@@ -1,7 +1,10 @@
 import os
 from sympy import im
 import sqlite3
-from database import Database as db
+
+def get_database():
+    from database import Database  # Lokaler Import
+    return Database()
 
 
 class Config:
@@ -10,8 +13,9 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class db_backup:
+    lagerbankname = 'Lagerbank2024.db'
     source_file = 'Lagerbank2024.db'
-    backup_directory = '/home/arkatosh/Documents/Offline_Banking'
+    backup_directory = '/home/arkatosh/Documents/CVJM/Bula/Lagerbank'
 
 class Zeltlager:
     lager = 2024 # Zeltlagerjahr

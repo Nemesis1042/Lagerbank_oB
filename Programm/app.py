@@ -126,7 +126,10 @@ def kontostand_in_geld(kontostand):
         zwischenstand -= count * denom
     return counts
 
-def create_backup(source_file, backup_directory):
+def create_backup(source_file, backup_directory): 
+    source_file = db_backup.source_file
+    backup_directory = db_backup.backup_directory
+    print("Erstelle Backup...") # Debugging-Information
     try:
         # Prüfen, ob die Quelldatei existiert
         if not os.path.isfile(source_file):
@@ -144,8 +147,11 @@ def create_backup(source_file, backup_directory):
         shutil.copy2(source_file, backup_file)
 
         print(f"Backup erfolgreich erstellt: {backup_file}")
+        
+        return redirect(url_for("backup"))
     except Exception as e:
         print(f"Fehler beim Erstellen des Backups: {e}")
+
 
 # Funktion zur Transaktionserstellung
 def create_transaction(käufer_name, produkt_barcode, menge):
@@ -683,19 +689,26 @@ def geld_aufteilen():
 
 @app.route('/backup', methods=['GET', 'POST'])
 def backup_database():
+    print('backup_database')  # Debugging-Information
+    
+    # Set default backup directory
+    backup_directory = app.config.get('BACKUP_DIRECTORY', '"/home/arkatosh/Documents/CVJM/Bula/Lagerbank"')
+
     if request.method == 'POST':
-        # Neue Werte aus dem Formular holen
-        backup_directory = request.form['backup_directory']
+        # Get new value from the form
+        new_backup_directory = request.form['backup_directory']
 
-        # Konfigurationswert aktualisieren
-        app.config['BACKUP_DIRECTORY'] = backup_directory
+        # Update configuration value
+        app.config['BACKUP_DIRECTORY'] = new_backup_directory
+
+        source_file = db_backup.source_file
         
-        #Backup durchführen
-        create_backup(db_backup.source_file, db_backup.backup_directory)
-        
+        # Perform the backup with the new directory
+        create_backup(source_file, new_backup_directory)
+
         return redirect(url_for('backup_database'))
-    return render_template('backup.html', backup_directory=db_backup.backup_directory)
-
+    
+    return render_template('backup.html', backup_directory=backup_directory)
 @app.route('/delete_database', methods=['GET', 'POST'])
 def delete_database():
     if request.method == 'POST':

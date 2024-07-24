@@ -1,9 +1,12 @@
 import sqlite3
 from typing import List, Tuple
 
+from config import db_backup as db_backup
+
+db_name = db_backup.lagerbankname
 # Database class to handle all database operations
 class Database:
-    def __init__(self, db_name="Lagerbank2024.db"):
+    def __init__(self, db_name=db_name):
         self.connection = sqlite3.connect(db_name, check_same_thread=False)
         self.cursor = self.connection.cursor()
         
@@ -56,6 +59,6 @@ class Database:
             raise Exception(f"Error deleting database: {e}")
 
 def get_db_connection():
-    conn = sqlite3.connect("Lagerbank2024.db")
+    conn = sqlite3.connect(db_name)
     conn.row_factory = sqlite3.Row
     return conn
